@@ -1,7 +1,7 @@
 language: cpp
 dist: trusty
-osx_image: xcode8.2
 sudo: false
+osx_image: xcode8.2
 os:
   - linux
   - osx
@@ -21,15 +21,15 @@ addons:
     - openjdk-8-jdk
     - maven
 install:
-  - if [ $TRAVIS_OS_NAME == linux ]; then export CC=/usr/bin/gcc-6; export CXX=/usr/bin/g++-6; fi
-  - if [ $TRAVIS_OS_NAME == osx ]; then brew install maven; fi
+- if [ $TRAVIS_OS_NAME == linux ]; then export CC=/usr/bin/gcc-6; export CXX=/usr/bin/g++-6; fi
+- if [ $TRAVIS_OS_NAME == osx ]; then brew install maven; fi
 script:
-  - python build_scripts/indigo-release-libs.py
-  - python build_scripts/indigo-make-by-libs.py --type=python,java
-  notifications:
+- python build_scripts/indigo-release-libs.py
+- python build_scripts/indigo-make-by-libs.py --type=python,java
+notifications:
   webhooks:
     urls:
-      - https://webhooks.gitter.im/e/$INDIGO_GITTER_KEY
+    - https://webhooks.gitter.im/e/$INDIGO_GITTER_KEY
     on_success: change
     on_failure: always
     on_start: never
